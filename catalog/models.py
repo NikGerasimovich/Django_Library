@@ -31,14 +31,13 @@ class MyModelName(models.Model):
         return self.field_name
 
 
-"""class Language(models.Model):
+class Language(models.Model):
 
     name = models.CharField(max_length=200,
                             help_text='Enter the book natural language(eg. English, Russian etc.)')
 
     def __str__(self):
         return self.name
-"""
 
 
 class Genre(models.Model):
@@ -67,7 +66,7 @@ class Book(models.Model):
                             help_text='13 Character <a href="https://www.isbn-international.org/content/what-isbn">ISBN number</a>')
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
 
-    # lenguage = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
+    language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
 
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
     # Genre class has already been defined so we can specify the object above.
@@ -78,7 +77,11 @@ class Book(models.Model):
     def display_genre(self):
         return ', '.join([genre.name for genre in self.genre.all()[:3]])
 
+    def display_language(self):
+        return ', '.join([language.name for language in self.language.all()[:3]])
+
     display_genre.short_description = "Genre"
+    display_language.short_description = "Language"
 
     def __str__(self):
         """
