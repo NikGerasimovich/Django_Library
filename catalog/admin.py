@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Author, Genre, Book, BookInstance
+from .models import Author, Genre, Book, BookInstance, Language
 
 # Register your models here
 
@@ -21,7 +21,7 @@ class BooksInstanceInline(admin.StackedInline):
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'author', 'display_genre')
+    list_display = ('title', 'author', 'display_genre', 'language')
     list_filter = ('author', 'title')
     inlines = [BooksInstanceInline]
 
