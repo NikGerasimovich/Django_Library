@@ -150,11 +150,11 @@ class Author(models.Model):
         return '%s, %s' % (self.last_name, self.first_name)
 
 
-a_record = MyModelName(my_field_name='Instance #1')
+"""a_record = MyModelName(my_field_name='Instance #1')
 a_record.save()
 print(a_record.id)
 print(a_record.my_field_name)
 a_record.my_field_name = "New Instance Name"
 a_record.save()
 print(a_record.id)
-print(a_record.my_field_name)
+print(a_record.my_field_name)"""
