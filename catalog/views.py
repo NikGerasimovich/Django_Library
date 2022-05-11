@@ -24,6 +24,11 @@ def index(request):
     num_book_insane_part = Book.objects.filter(genre__name__icontains='Фантастика')
     num_count_insane_part = num_book_insane_part.count()
 
+    # Получение числа визитов на главную страницу
+    num_authors = Author.objects.count()
+    num_visit = request.session.get('num_visit', 0)
+    request.session['num_visit'] = num_visit + 1
+
     # Отрисовка HTML-шаблона index.html с данными внутри
     # переменной контекста context
     return render(
@@ -37,6 +42,7 @@ def index(request):
                  'num_count_part': num_count_part,
                  'num_book_insane_part': num_book_insane_part,
                  'num_count_insane_part': num_count_insane_part,
+                 'num_visit': num_visit,
                  },
     )
 
